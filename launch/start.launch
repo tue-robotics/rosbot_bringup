@@ -1,0 +1,14 @@
+<launch>
+
+    <!-- <arg name="ws2812b_leds" default="false" /> -->
+
+    <node pkg="tf" type="static_transform_publisher" name="ROSbot_laser" args="0 0 0 3.14 0 0 base_link laser 100" />
+
+    <include file="$(find rplidar_ros)/launch/rplidar.launch"></include>
+
+    <!-- LEDS -->
+    <!-- <node if="$(arg ws2812b_leds)" pkg="rosbot_ekf" type="move_base_ws2812b_example" name="move_base_ws2812b_example" /> -->
+
+    <include file="$(find rosbot_ekf)/launch/all.launch" />
+
+</launch>
