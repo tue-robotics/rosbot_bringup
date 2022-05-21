@@ -3,6 +3,7 @@
     <!-- <arg name="ws2812b_leds" default="false" /> -->
 
     <node pkg="tf" type="static_transform_publisher" name="ROSbot_laser" args="0 0 0 3.14 0 0 base_link laser 100" />
+    <node pkg="rosbot_bringup" type="laser_transformer_node" name="laser_transformer"/>
 
     <include file="$(find rplidar_ros)/launch/rplidar.launch"></include>
 
