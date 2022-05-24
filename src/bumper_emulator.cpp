@@ -91,7 +91,7 @@ int main(int argc, char **argv)
   while (ros::ok())
   {
      ros::spinOnce();
-     BumperEmulator.PublishBumperData();
+     bumperEmulator.PublishBumperData();
      loop_rate.sleep();
   }
   return 0;
