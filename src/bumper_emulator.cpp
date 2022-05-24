@@ -83,10 +83,10 @@ class BumperEmulator
 int main(int argc, char **argv)
 {
   ros::init(argc, argv,"bumper_emulator");
-  ros::Rate loop_rate(10); // 10 Hz
-
-  ROS_INFO("started bumper emulator node");
   BumperEmulator bumperEmulator = BumperEmulator();
+	
+  ros::Rate loop_rate(10); // 10 Hz
+  ROS_INFO("started bumper emulator node");
 
   while (ros::ok())
   {
