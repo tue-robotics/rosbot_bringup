@@ -14,11 +14,11 @@ class BumperEmulator
         
         range_fr_sub = nh.subscribe<sensor_msgs::Range>("/range/fr", 1, &BumperEmulator::frRangeCallback, this);
         range_fl_sub = nh.subscribe<sensor_msgs::Range>("/range/fl", 1, &BumperEmulator::flRangeCallback, this);
-        range_br_sub = nh.subscribe<sensor_msgs::Range>("/range/br", 1, &BumperEmulator::brRangeCallback, this);
-        range_bl_sub = nh.subscribe<sensor_msgs::Range>("/range/bl", 1, &BumperEmulator::blRangeCallback, this);
+        range_rr_sub = nh.subscribe<sensor_msgs::Range>("/range/rr", 1, &BumperEmulator::rrRangeCallback, this);
+        range_rl_sub = nh.subscribe<sensor_msgs::Range>("/range/rl", 1, &BumperEmulator::rlRangeCallback, this);
 	 
 	bumper_f_pub = nh.advertise<std_msgs::Bool>("/bumper_todo_f", 1);
-	bumper_b_pub = nh.advertise<std_msgs::Bool>("/bumper_todo_b", 1);
+	bumper_r_pub = nh.advertise<std_msgs::Bool>("/bumper_todo_b", 1);
    }
    
    private:
@@ -28,6 +28,10 @@ class BumperEmulator
    	std_msgs::Bool msg_f;
    	msg_f.data = f_contact;
    	bumper_f_pub.publish(msg_f);
+   	
+   	std_msgs::Bool msg_r;
+   	msg_r.data = r_contact;
+   	bumper_r_pub.publish(msg_r);
    }
    
    void frRangeCallback(const sensor_msgs::Range::ConstPtr& msg)
@@ -46,33 +50,33 @@ class BumperEmulator
    	PublishBumperData();
    }
    
-   void brRangeCallback(const sensor_msgs::Range::ConstPtr& msg)
+   void rrRangeCallback(const sensor_msgs::Range::ConstPtr& msg)
    {
-   	br_contact = (msg-> range <= BUMPERSIZE);
-   	b_contact = br_contact || bl_contact;
+   	rr_contact = (msg-> range <= BUMPERSIZE);
+   	r_contact = rr_contact || rl_contact;
    }
    
-   void blRangeCallback(const sensor_msgs::Range::ConstPtr& msg)
+   void rlRangeCallback(const sensor_msgs::Range::ConstPtr& msg)
    {
-   	bl_contact = (msg-> range <= BUMPERSIZE);
-   	b_contact = br_contact || bl_contact;
+   	rl_contact = (msg-> range <= BUMPERSIZE);
+   	r_contact = rr_contact || rl_contact;
    }
    
    bool fr_contact;
    bool fl_contact;
-   bool br_contact;
-   bool bl_contact;
+   bool rr_contact;
+   bool rl_contact;
    
    bool f_contact;
-   bool b_contact;
+   bool r_contact;
    
    ros::Publisher bumper_f_pub;
-   ros::Publisher bumper_b_pub;
+   ros::Publisher bumper_r_pub;
    
    ros::Subscriber range_fr_sub;
    ros::Subscriber range_fl_sub;
-   ros::Subscriber range_br_sub;
-   ros::Subscriber range_bl_sub;   
+   ros::Subscriber range_rr_sub;
+   ros::Subscriber range_rl_sub;   
 };
 
 
