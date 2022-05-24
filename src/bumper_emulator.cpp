@@ -21,8 +21,6 @@ class BumperEmulator
 	bumper_r_pub = nh.advertise<std_msgs::Bool>("/pyro/base_b_bumper_sensor", 1);
    }
    
-   private:
-   
    void PublishBumperData()
    {
    	std_msgs::Bool msg_f;
@@ -33,35 +31,31 @@ class BumperEmulator
    	msg_r.data = r_contact;
    	bumper_r_pub.publish(msg_r);
    }
+	
+   private:
    
    void frRangeCallback(const sensor_msgs::Range::ConstPtr& msg)
    {
    	fr_contact = (msg-> range <= BUMPERSIZE);
    	f_contact = fr_contact || fl_contact;
-   	
-   	PublishBumperData();
    }
    
    void flRangeCallback(const sensor_msgs::Range::ConstPtr& msg)
    {
    	fl_contact = (msg-> range <= BUMPERSIZE);
    	f_contact = fr_contact || fl_contact;
-   	
-   	PublishBumperData();
    }
    
    void rrRangeCallback(const sensor_msgs::Range::ConstPtr& msg)
    {
    	rr_contact = (msg-> range <= BUMPERSIZE);
    	r_contact = rr_contact || rl_contact;
-   	PublishBumperData();
    }
    
    void rlRangeCallback(const sensor_msgs::Range::ConstPtr& msg)
    {
    	rl_contact = (msg-> range <= BUMPERSIZE);
    	r_contact = rr_contact || rl_contact;
-   	PublishBumperData();
    }
    
    bool fr_contact;
@@ -89,12 +83,16 @@ class BumperEmulator
 int main(int argc, char **argv)
 {
   ros::init(argc, argv,"bumper_emulator");
+  ros::Rate loop_rate(10); // 10 Hz
 
   ROS_INFO("started bumper emulator node");
   BumperEmulator bumperEmulator = BumperEmulator();
 
-  ROS_INFO("spinning");
-  ros::spin();
-
+  while (ros::ok())
+  {
+     ros::spinOnce();
+     BumperEmulator.PublishBumperData();
+     loop_rate.sleep();
+  }
   return 0;
 }
