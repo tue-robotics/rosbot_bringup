@@ -25,19 +25,25 @@ class BumperEmulator
    
    void PublishBumperData()
    {
-   	
+   	std_msgs::Bool msg_f;
+   	msg_f.data = f_contact;
+   	bumper_f_pub.publish(msg_f);
    }
    
    void frRangeCallback(const sensor_msgs::Range::ConstPtr& msg)
    {
    	fr_contact = (msg-> range <= BUMPERSIZE);
    	f_contact = fr_contact || fl_contact;
+   	
+   	PublishBumperData();
    }
    
    void flRangeCallback(const sensor_msgs::Range::ConstPtr& msg)
    {
    	fl_contact = (msg-> range <= BUMPERSIZE);
    	f_contact = fr_contact || fl_contact;
+   	
+   	PublishBumperData();
    }
    
    void brRangeCallback(const sensor_msgs::Range::ConstPtr& msg)
