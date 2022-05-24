@@ -3,7 +3,7 @@
 #include "sensor_msgs/Range.h" 
 #include "std_msgs/Bool.h" 
 
-#define BUMPERSIZE 1 //todo
+#define BUMPERSIZE 0.09 //
 
 class BumperEmulator
 {
@@ -54,12 +54,14 @@ class BumperEmulator
    {
    	rr_contact = (msg-> range <= BUMPERSIZE);
    	r_contact = rr_contact || rl_contact;
+   	PublishBumperData();
    }
    
    void rlRangeCallback(const sensor_msgs::Range::ConstPtr& msg)
    {
    	rl_contact = (msg-> range <= BUMPERSIZE);
    	r_contact = rr_contact || rl_contact;
+   	PublishBumperData();
    }
    
    bool fr_contact;
