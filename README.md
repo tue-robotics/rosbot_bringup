@@ -6,6 +6,15 @@ After installation of the default ROSBOT software:
 
 ## setting up the ROS network
 
+install the following packages for namespace resolution
+
+`sudo apt-get install libnss-mdns avahi-daemon avahi-dnsconfd`
+
+libnss-mdns # Allows for searching .local dns names
+avahi-daemon # Allows for exposing .local dns name
+avahi-dnsconfd # Listens on the network for announced DNS servers and passes them to resolvconf
+
+
 #TODO: setup the ROS network with proper namespace resolution.
 
 ### ROBOT
