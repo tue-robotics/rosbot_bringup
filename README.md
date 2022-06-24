@@ -6,7 +6,7 @@ After installation of the default ROSBOT software:
 
 ## setting up the ROS network
 
-install the following packages for namespace resolution
+install the following packages for namespace resolution. Reboot afterwards.
 
 `sudo apt-get install libnss-mdns avahi-daemon avahi-dnsconfd`
 
