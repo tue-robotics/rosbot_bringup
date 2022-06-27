@@ -2,8 +2,9 @@
     <!-- <arg name="ws2812b_leds" default="false" /> -->
 
     <arg name="camera" default="false" /> 
+    <arg name="ns" default="" /> 
 
-    <node pkg="tf" type="static_transform_publisher" name="ROSbot_laser" args="0 0 0 3.14 0 0 base_link laser 100" />
+    <node pkg="tf" type="static_transform_publisher" name="ROSbot_laser" args="0 0 0 3.14 0 0 $(arg ns)/base_link $(arg ns)/laser 100" />
     #<node pkg="rosbot_bringup" type="laser_transformer_node" name="laser_transformer"/>
     #<node pkg="rosbot_bringup" type="bumper_emulator_node" name="bumper_emulator"/>
 
@@ -13,6 +14,7 @@
         <include file="$(find rplidar_ros)/launch/rplidar_a3.launch"></include>
         <include file="$(find rosbot_ekf)/launch/all.launch">
             <arg name="rosbot_pro" value="true" />
+            <arg name="ns" value="$(arg ns)"/>
         </include>
     </group>
 
@@ -20,6 +22,7 @@
         <include file="$(find rplidar_ros)/launch/rplidar.launch"></include>
         <include file="$(find rosbot_ekf)/launch/all.launch">
             <arg name="rosbot_pro" value="false" />
+            <arg name="ns" value="$(arg ns)" />
         </include>
     </group>    
 
