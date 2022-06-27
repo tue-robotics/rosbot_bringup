@@ -1,6 +1,8 @@
 <launch>
     <!-- <arg name="ws2812b_leds" default="false" /> -->
 
+    <arg name="camera" default="false" /> 
+
     <node pkg="tf" type="static_transform_publisher" name="ROSbot_laser" args="0 0 0 3.14 0 0 base_link laser 100" />
     #<node pkg="rosbot_bringup" type="laser_transformer_node" name="laser_transformer"/>
     #<node pkg="rosbot_bringup" type="bumper_emulator_node" name="bumper_emulator"/>
@@ -20,6 +22,10 @@
             <arg name="rosbot_pro" value="false" />
         </include>
     </group>    
+
+    <group if= "$(eval camera)">
+        <include file="$(find astra_launch)/launch/astra.launch" />
+    </group>
 
     <!-- LEDS -->
     <!-- <node if="$(arg ws2812b_leds)" pkg="rosbot_ekf" type="move_base_ws2812b_example" name="move_base_ws2812b_example" /> -->

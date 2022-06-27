@@ -1,9 +1,12 @@
 <launch>
 
-<arg name="_ns" default="robot" /> 
+<arg name="ns" default="robot" /> 
+<arg name="camera" default="false" />
 
-<group ns="$(arg _ns)">
-    <include file="$(find rosbot_bringup)/launch/start.launch" />
+<group ns="$(arg ns)">
+    <include file="$(find rosbot_bringup)/launch/start.launch">
+        <arg name="camera" value="$(arg camera)" />
+    </include>
 </group>
 
 </launch>
