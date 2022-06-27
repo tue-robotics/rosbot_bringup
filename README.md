@@ -1,4 +1,6 @@
 # rosbot_bringup
+makes use of adapted version of rosbot_ekf
+https://github.com/KdVos/rosbot_ekf
 
 # installation instructions
 
