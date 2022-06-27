@@ -79,6 +79,8 @@ To test the working of the (rgb)-camera run (on the remote laptop)
 
 ## Multi-Robot
 
+**todo** namespacing of TF-tree
+
 Using ROS, there has to be **exactly one** master, which runs the *roscore*. 
 
 Depending on your specific application, and/or preferences, you might want to run the roscore on either the remote pc or one of the robots.
