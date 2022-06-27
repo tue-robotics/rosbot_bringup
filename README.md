@@ -19,7 +19,7 @@ ssh husarion@<IP of Robot>
 After installation of the default ROSBOT software:
 
 ## Single Robot
-### setting up the ROS network
+### Setting up the ROS network
 
 install the following packages for namespace resolution. Reboot afterwards.
 
@@ -33,6 +33,7 @@ avahi-dnsconfd # Listens on the network for announced DNS servers and passes the
 #TODO: setup the ROS network with proper namespace resolution.
 
 **ROBOT**
+
 In the bashrc of the robot add the line:
 
   `export ROS_IP=<ip of the robot>`
@@ -50,13 +51,23 @@ Furthermore, make sure that the following enviroment variable is set
  depending on the exact model you're using.
 
 **Remote PC**
+
 In the bashrc of the remote PC add:
  
   `export ROS_HOSTNAME=<ip of the remote PC>`
   
 Disable the firewall on your remote PC or whitelist the robot on the remote PC. To do the latter, on the robot run:
 
-`sudo ufw allow from <ip of the remote PC>`
+`sudo ufw allow from <ip of the robot>`
+
+### Launch the Hardware
+On the Robot run the following command on the robot
+
+`roslaunch rosbot_bringup start.launch`
+
+To test the correct functioning of the robot you can drive around using teleop
+
+`rosrun teleop_twist_keyboard teleop_twist_keyboard.py`
 
 ## Multi-Robot
 
