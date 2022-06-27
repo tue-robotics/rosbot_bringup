@@ -1,0 +1,9 @@
+<launch>
+
+<arg name="_ns" default="robot" /> 
+
+<group ns="$(arg _ns)">
+    <include file="$(find rosbot_bringup)/launch/start.launch" />
+</group>
+
+</launch>
