@@ -20,7 +20,7 @@
             <arg name="rosbot_pro" value="true" />
             <arg name="ns" value="$(arg ns)"/>
         </include>
-        <include file="$(find rosbot_ekf)/launch/all.launch">
+        <include file="$(find rosbot_ekf_multi)/launch/all.launch">
             <arg name="rosbot_pro" value="true" />
             <arg name="ns" value="$(arg ns)"/>
         </include>
@@ -32,7 +32,7 @@
             <arg name="rosbot_pro" value="false" />
             <arg name="ns" value="$(arg ns)"/>
         </include>
-        <include file="$(find rosbot_ekf)/launch/all.launch">
+        <include file="$(find rosbot_ekf_multi)/launch/all.launch">
             <arg name="rosbot_pro" value="false" />
             <arg name="ns" value="$(arg ns)"/>
         </include>
