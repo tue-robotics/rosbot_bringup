@@ -1,5 +1,12 @@
 # rosbot_bringup
 
+## Prerequisites
+Make sure the following repos are present in the husarion_ws of the robot
+
+https://github.com/KdVos/rosbot_rosserial_python
+
+https://github.com/KdVos/rosbot_ekf_multi
+
 ### IP-adresses of the Rosbots
 On the atHome network the rosbots have the following IPs
 
@@ -78,8 +85,6 @@ To test the working of the (rgb)-camera run (on the remote laptop)
 `rosrun image_view image_view image:=/camera/rgb/image_raw/ compressed`
 
 ## Multi-Robot
-
-**todo** namespacing of TF-tree
 
 Using ROS, there has to be **exactly one** master, which runs the *roscore*. 
 
