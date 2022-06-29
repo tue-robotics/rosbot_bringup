@@ -40,6 +40,6 @@
 
     <!-- Run camera launch files-->
     <group if= "$(eval camera)">
-        <include file="$(find rosbot_bringupastra_launch)/launch/astra.launch" />
+        <include file="$(find astra_launch)/launch/astra.launch" />
     </group>
 </launch>
