@@ -28,7 +28,7 @@
     
     <!-- Run ROSBOT non-pro launch files-->
     <group if= "$(eval arg('robot_version') != 'ROSBOT_2.0_PRO')">
-        <include file="$(find rplidar_ros)/launch/rplidar.launch">
+        <include file="$(find rosbot_bringup)/launch/startlidar.launch">
             <arg name="rosbot_pro" value="false" />
             <arg name="ns" value="$(arg ns)"/>
         </include>
