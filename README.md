@@ -1,13 +1,20 @@
 # rosbot_bringup
 
+## Prerequisites
+Make sure the following repos are present in the husarion_ws of the robot
+
+https://github.com/KdVos/rosbot_rosserial_python
+
+https://github.com/KdVos/rosbot_ekf_multi
+
 ### IP-adresses of the Rosbots
-On the atHome network the rosbots have the following IPs
+On the rosbot network the rosbots have the following IPs
 
 | Robot  | Type | IP |
 | ------------- | ------------- |  ------------- |
-| __Pyro__  | ROSBOT 2.0 (Red and White)  | 192.168.44.122
-| *TBD 1* | ROSBOT 2.0 PRO (Black and Purple) | 192.168.44.141
-| *TBD 2* | ROSBOT 2.0 PRO (Black and Purple) | 192.168.44.147
+| __Pyro__  | ROSBOT 2.0 (Red and White)  | 192.168.1.3
+| *TBD 1* | ROSBOT 2.0 PRO (Black and Purple) | 192.168.1.4
+| *TBD 2* | ROSBOT 2.0 PRO (Black and Purple) | 192.168.1.5
 
 Logging into the robots is easily done through the command line
 ```
@@ -78,8 +85,6 @@ To test the working of the (rgb)-camera run (on the remote laptop)
 `rosrun image_view image_view image:=/camera/rgb/image_raw/ compressed`
 
 ## Multi-Robot
-
-**todo** namespacing of TF-tree
 
 Using ROS, there has to be **exactly one** master, which runs the *roscore*. 
 
