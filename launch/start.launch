@@ -11,6 +11,9 @@
         <node pkg="tf" type="static_transform_publisher" name="ROSbot_laser" args="0 0 0 3.14 0 0 base_link laser 100" />
     </group>    
 
+    <!-- Log Battery Voltage-->
+    <node pkg="rosbot_bringup" type="battery_logger_node" name="battery_logger"/>
+
     <!-- Robot version is an enviroment variable-->
     <arg name="robot_version" default="$(env ROSBOT_VER)" />
 
