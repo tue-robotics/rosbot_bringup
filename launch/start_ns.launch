@@ -1,0 +1,13 @@
+<launch>
+
+<arg name="ns" default="robot" /> 
+<arg name="camera" default="false" />
+
+<group ns="$(arg ns)">
+    <include file="$(find rosbot_bringup)/launch/start.launch">
+        <arg name="camera" value="$(arg camera)" />
+        <arg name="ns" value="$(arg ns)"/>
+    </include>
+</group>
+
+</launch>

@@ -1,16 +1,48 @@
 <launch>
+    <arg name="camera" default="false" /> 
+    <arg name="ns" default=''/> 
 
-    <!-- <arg name="ws2812b_leds" default="false" /> -->
+     <!-- Publish frame between base_link and laser depnding on whether namespace has been defined -->
+    <group if= "$(eval arg('ns') != '')">
+        <node pkg="tf" type="static_transform_publisher" name="ROSbot_laser" args="0 0 0 3.14 0 0 $(arg ns)/base_link $(arg ns)/laser 100" />
+    </group>
 
-    <node pkg="tf" type="static_transform_publisher" name="ROSbot_laser" args="0 0 0 3.14 0 0 base_link laser 100" />
-    <node pkg="rosbot_bringup" type="laser_transformer_node" name="laser_transformer"/>
-    <node pkg="rosbot_bringup" type="bumper_emulator_node" name="bumper_emulator"/>
+    <group if= "$(eval arg('ns') == '')">
+        <node pkg="tf" type="static_transform_publisher" name="ROSbot_laser" args="0 0 0 3.14 0 0 base_link laser 100" />
+    </group>    
 
-    <include file="$(find rplidar_ros)/launch/rplidar.launch"></include>
+    <!-- Log Battery Voltage-->
+    <node pkg="rosbot_bringup" type="battery_logger_node" name="battery_logger"/>
 
-    <!-- LEDS -->
-    <!-- <node if="$(arg ws2812b_leds)" pkg="rosbot_ekf" type="move_base_ws2812b_example" name="move_base_ws2812b_example" /> -->
+    <!-- Robot version is an enviroment variable-->
+    <arg name="robot_version" default="$(env ROSBOT_VER)" />
 
-    <include file="$(find rosbot_ekf)/launch/all.launch" />
+    <!-- Run ROSBOT pro launch files-->
+    <group if= "$(eval arg('robot_version') == 'ROSBOT_2.0_PRO')">      
+        <include file="$(find rosbot_bringup)/launch/startlidar.launch">
+            <arg name="rosbot_pro" value="true" />
+            <arg name="ns" value="$(arg ns)"/>
+        </include>
+        <include file="$(find rosbot_ekf_multi)/launch/all.launch">
+            <arg name="rosbot_pro" value="true" />
+            <arg name="ns" value="$(arg ns)"/>
+        </include>
+    </group>
+    
+    <!-- Run ROSBOT non-pro launch files-->
+    <group if= "$(eval arg('robot_version') != 'ROSBOT_2.0_PRO')">
+        <include file="$(find rosbot_bringup)/launch/startlidar.launch">
+            <arg name="rosbot_pro" value="false" />
+            <arg name="ns" value="$(arg ns)"/>
+        </include>
+        <include file="$(find rosbot_ekf_multi)/launch/all.launch">
+            <arg name="rosbot_pro" value="false" />
+            <arg name="ns" value="$(arg ns)"/>
+        </include>
+    </group>    
 
+    <!-- Run camera launch files-->
+    <group if= "$(eval camera)">
+        <include file="$(find astra_launch)/launch/astra.launch" />
+    </group>
 </launch>
