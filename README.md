@@ -13,8 +13,8 @@ On the rosbot network the rosbots have the following IPs
 | Robot  | Type | IP |
 | ------------- | ------------- |  ------------- |
 | __Pyro__  | ROSBOT 2.0 (Red and White)  | 192.168.1.3
-| *TBD 1* | ROSBOT 2.0 PRO (Black and Purple) | 192.168.1.4
-| *TBD 2* | ROSBOT 2.0 PRO (Black and Purple) | 192.168.1.5
+| __Bobo__ | ROSBOT 2.0 PRO (Black and Purple) | 192.168.1.4
+| __Coco__ | ROSBOT 2.0 PRO (Black and Purple) | 192.168.1.5
 
 Logging into the robots is easily done through the command line
 ```
