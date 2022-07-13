@@ -13,6 +13,6 @@
 
         <param name="inverted"            type="bool"   value="false"/>
         <param name="angle_compensate"    type="bool"   value="true"/>
-        <param  if= "$(eval arg('rosbot_pro') == true)"   name="scan_mode"           type="string" value="Sensitivity"/>
+        <param  if= "$(eval arg('rosbot_pro') == true)"   name="scan_mode"           type="string" value="Stability"/>
         </node>
 </launch>     
