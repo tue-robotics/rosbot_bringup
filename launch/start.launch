@@ -43,13 +43,15 @@
 
     <!-- Run camera launch files-->
     <group if= "$(eval camera)">
-        <include file="$(find astra_launch)/launch/astra.launch">
-            <arg unless= "$(eval arg('ns') == '')" name="camera" value="$(arg ns)_camera"/>
+        <include file="$(find rosbot_bringup)/launch/astra.launch">
+            <arg unless= "$(eval arg('ns') == '')" name="camera" value="camera"/>
             <arg if= "$(eval arg('ns') == '')" name="camera" value="camera"/>
+
+            <arg name="ns" value="$(arg ns)"/>
         </include>
 
         <!-- Publish Camera -> base_link transform-->
-        <node pkg="tf" type="static_transform_publisher" name="camera_publisher" args="-0.03 0 0.18 0 0 0  $(arg ns)/base_link $(arg ns)_camera_link 100" />
+        <node pkg="tf" type="static_transform_publisher" name="camera_publisher" args="-0.03 0 0.18 0 0 0  $(arg ns)/base_link $(arg ns)/camera_link 100" />
     </group>
 
     
