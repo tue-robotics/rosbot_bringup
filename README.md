@@ -1,4 +1,6 @@
 # rosbot_bringup
+makes use of adapted version of rosbot_ekf
+https://github.com/KdVos/rosbot_ekf
 
 ## Prerequisites
 Make sure the following repos are present in the husarion_ws of the robot
@@ -13,8 +15,8 @@ On the rosbot network the rosbots have the following IPs
 | Robot  | Type | IP |
 | ------------- | ------------- |  ------------- |
 | __Pyro__  | ROSBOT 2.0 (Red and White)  | 192.168.1.3
-| *TBD 1* | ROSBOT 2.0 PRO (Black and Purple) | 192.168.1.4
-| *TBD 2* | ROSBOT 2.0 PRO (Black and Purple) | 192.168.1.5
+| __Bobo__ | ROSBOT 2.0 PRO (Black and Purple) | 192.168.1.4
+| __Coco__ | ROSBOT 2.0 PRO (Black and Purple) | 192.168.1.5
 
 Logging into the robots is easily done through the command line
 ```
@@ -27,6 +29,15 @@ After installation of the default ROSBOT software:
 
 ## Single Robot
 ### Setting up the ROS network
+
+install the following packages for namespace resolution. Reboot afterwards.
+
+`sudo apt-get install libnss-mdns avahi-daemon avahi-dnsconfd`
+
+libnss-mdns # Allows for searching .local dns names
+avahi-daemon # Allows for exposing .local dns name
+avahi-dnsconfd # Listens on the network for announced DNS servers and passes them to resolvconf
+
 
 install the following packages for namespace resolution. Reboot afterwards.
 
