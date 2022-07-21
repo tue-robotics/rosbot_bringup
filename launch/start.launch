@@ -43,6 +43,14 @@
 
     <!-- Run camera launch files-->
     <group if= "$(eval camera)">
-        <include file="$(find astra_launch)/launch/astra.launch" />
+        <include file="$(find astra_launch)/launch/astra.launch">
+            <arg unless= "$(eval arg('ns') == '')" name="camera" value="$(arg ns)_camera"/>
+            <arg if= "$(eval arg('ns') == '')" name="camera" value="camera"/>
+        </include>
+
+        <!-- Publish Camera -> base_link transform-->
+        <node pkg="tf" type="static_transform_publisher" name="camera_publisher" args="-0.03 0 0.18 0 0 0  $(arg ns)/base_link $(arg ns)_camera_link 100" />
     </group>
+
+    
 </launch>
