@@ -58,6 +58,5 @@
 
     <node pkg="rosbot_bringup" type="laser_transformer_node" name="laser_transformer"/>
     <node pkg="rosbot_bringup" type="bumper_emulator_node" name="bumper_emulator"/>
-
     
 </launch>
