@@ -29,8 +29,8 @@ class BumperEmulator
       range_rr_sub = nh.subscribe<sensor_msgs::Range>("/range/rr", 1, &BumperEmulator::rrRangeCallback, this);
       range_rl_sub = nh.subscribe<sensor_msgs::Range>("/range/rl", 1, &BumperEmulator::rlRangeCallback, this);
 	 
-	   bumper_f_pub = nh.advertise<std_msgs::Bool>(bumper_f_param, 1);
-	   bumper_r_pub = nh.advertise<std_msgs::Bool>(bumper_b_param, 1);
+      bumper_f_pub = nh.advertise<std_msgs::Bool>(bumper_f_param, 1);
+      bumper_r_pub = nh.advertise<std_msgs::Bool>(bumper_b_param, 1);
    }
    
    void PublishBumperData()
