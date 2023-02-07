@@ -11,14 +11,18 @@ class BumperEmulator
     BumperEmulator()
     {
         ros::NodeHandle nh;
+        std::string bumper_f_param, bumper_b_param;
+        if (!nh.getParam("bumper_f_", bumper_f_param)) {ROS_ERROR_STREAM("Parameter " << "bumper_f_" << " not set");};
+        if (!nh.getParam("bumper_b_", bumper_b_param)) {ROS_ERROR_STREAM("Parameter " << "bumper_b_" << " not set");};
+
         
         range_fr_sub = nh.subscribe<sensor_msgs::Range>("/range/fr", 1, &BumperEmulator::frRangeCallback, this);
         range_fl_sub = nh.subscribe<sensor_msgs::Range>("/range/fl", 1, &BumperEmulator::flRangeCallback, this);
         range_rr_sub = nh.subscribe<sensor_msgs::Range>("/range/rr", 1, &BumperEmulator::rrRangeCallback, this);
         range_rl_sub = nh.subscribe<sensor_msgs::Range>("/range/rl", 1, &BumperEmulator::rlRangeCallback, this);
 	 
-	bumper_f_pub = nh.advertise<std_msgs::Bool>("/pyro/base_f_bumper_sensor", 1);
-	bumper_r_pub = nh.advertise<std_msgs::Bool>("/pyro/base_b_bumper_sensor", 1);
+	bumper_f_pub = nh.advertise<std_msgs::Bool>(bumper_f_param, 1);
+	bumper_r_pub = nh.advertise<std_msgs::Bool>(bumper_b_param, 1);
    }
    
    void PublishBumperData()

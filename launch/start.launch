@@ -2,6 +2,9 @@
     <arg name="camera" default="false" /> 
     <arg name="ns" default=''/> 
 
+    <!-- Load robot config file -->
+    <rosparam command="load" file="$(find rosbot_bringup)/config/rosbot_config.yaml" />
+
      <!-- Publish frame between base_link and laser depnding on whether namespace has been defined -->
     <group if= "$(eval arg('ns') != '')">
         <node pkg="tf" type="static_transform_publisher" name="ROSbot_laser" args="0 0 0 3.14 0 0 $(arg ns)/base_link $(arg ns)/laser 100" />
