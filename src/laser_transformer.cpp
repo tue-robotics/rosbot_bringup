@@ -14,7 +14,9 @@ public:
         std::string laser_param;
         if (!nh.getParam("laser_", laser_param))
         {
-            ROS_FATAL_STREAM("Parameter " << "laser_" << " not set");
+            ROS_FATAL_STREAM("Parameter "
+                             << "laser_"
+                             << " not set");
             exit(EXIT_FAILURE);
         }
         laser_sub = nh.subscribe<sensor_msgs::LaserScan>("/scan", 1, &LaserTransformer::laserCallback, this);
