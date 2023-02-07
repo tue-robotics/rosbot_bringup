@@ -12,7 +12,7 @@ class LaserTransformer
     {
         ros::NodeHandle nh;
         std::string laser_param;
-        if (!nh.getParam("laser_", laser_param)) {ROS_ERROR_STREAM("Parameter " << "laser_" << " not set");};
+        if (!nh.getParam("laser_", laser_param)) {ROS_FATAL_STREAM("Parameter " << "laser_" << " not set"); exit(EXIT_FAILURE);};
         laser_sub = nh.subscribe<sensor_msgs::LaserScan>("/scan", 1, &LaserTransformer::laserCallback, this);
         laser_pub = nh.advertise<sensor_msgs::LaserScan>(laser_param, 1);
     }

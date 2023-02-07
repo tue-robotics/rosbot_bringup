@@ -12,8 +12,8 @@ class BumperEmulator
     {
         ros::NodeHandle nh;
         std::string bumper_f_param, bumper_b_param;
-        if (!nh.getParam("bumper_f_", bumper_f_param)) {ROS_ERROR_STREAM("Parameter " << "bumper_f_" << " not set");};
-        if (!nh.getParam("bumper_b_", bumper_b_param)) {ROS_ERROR_STREAM("Parameter " << "bumper_b_" << " not set");};
+        if (!nh.getParam("bumper_f_", bumper_f_param)) {ROS_FATAL_STREAM("Parameter " << "bumper_f_" << " not set"); exit(EXIT_FAILURE);};
+        if (!nh.getParam("bumper_b_", bumper_b_param)) {ROS_FATAL_STREAM("Parameter " << "bumper_b_" << " not set"); exit(EXIT_FAILURE);};
 
         
         range_fr_sub = nh.subscribe<sensor_msgs::Range>("/range/fr", 1, &BumperEmulator::frRangeCallback, this);
