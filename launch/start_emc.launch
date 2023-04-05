@@ -5,6 +5,7 @@
 
     <!-- Load robot config file -->
     <rosparam command="load" file="$(find rosbot_bringup)/config/rosbot_config.yaml" />
+    <rosparam command="load" file="$(find emc_system)/config/rosbot_mrc_config.yaml" />
 
      <!-- Publish frame between base_link and laser depnding on whether namespace has been defined -->
     <group if= "$(eval arg('ns') != '')">
