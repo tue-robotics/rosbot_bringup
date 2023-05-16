@@ -29,6 +29,7 @@ private:
         sensor_msgs::LaserScan transformed_msg;
 
         transformed_msg.header = msg->header;
+        transformed_msg.header.frame_id = "transformed_laser";
         transformed_msg.range_max = msg->range_max;
         transformed_msg.range_min = msg->range_min;
         transformed_msg.angle_max = ANGLE_MAX;
