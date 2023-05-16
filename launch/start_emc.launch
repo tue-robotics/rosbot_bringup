@@ -57,7 +57,7 @@
         <node pkg="tf" type="static_transform_publisher" name="camera_publisher" args="-0.03 0 0.18 0 0 0  $(arg ns)/base_link $(arg ns)_camera_link 100" />
     </group>
 
-    <node pkg="rosbot_bringup" type="laser_transformer_node" name="laser_transformer"/>
+    <include file="$(find rosbot_bringup)/launch/laser_transformer"/>
     <node pkg="rosbot_bringup" type="bumper_emulator_node" name="bumper_emulator"/>
     
 </launch>
