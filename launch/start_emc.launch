@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <launch>
     <arg name="camera" default="false" /> 
+    <arg name="vrpn" default="false" />
     <arg name="ns" default=''/> 
 
     <!-- Load robot config file -->
@@ -55,6 +56,11 @@
 
         <!-- Publish Camera -> base_link transform-->
         <node pkg="tf" type="static_transform_publisher" name="camera_publisher" args="-0.03 0 0.18 0 0 0  $(arg ns)/base_link $(arg ns)_camera_link 100" />
+    </group>
+
+    <!-- Run Motion Capture launch file-->
+    <group if="$(arg vrpn)">
+        <include file="$(find rosbot_bringup)/launch/vrp_client.launch"></include>
     </group>
 
     <include file="$(find rosbot_bringup)/launch/laser_transformer.launch"/>
