@@ -9,6 +9,7 @@
 
     <param name="robot_description" command="$(find xacro)/xacro '$(find rosbot_description)/urdf/rosbot.xacro'"/>
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher"/>
 
      <!-- Publish frame between base_link and laser depnding on whether namespace has been defined -->
     <group if= "$(eval arg('ns') != '')">
