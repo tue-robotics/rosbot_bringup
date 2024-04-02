@@ -7,6 +7,10 @@
     <rosparam command="load" file="$(find rosbot_bringup)/config/rosbot_config.yaml" />
     <rosparam command="load" file="$(find emc_system)/config/rosbot_mrc_config.yaml" />
 
+    <param name="robot_description" command="$(find xacro)/xacro '$(find rosbot_description)/urdf/rosbot.xacro'"/>
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher"/>
+
      <!-- Publish frame between base_link and laser depnding on whether namespace has been defined -->
     <group if= "$(eval arg('ns') != '')">
         <node pkg="tf" type="static_transform_publisher" name="ROSbot_laser" args="0 0 0 3.14 0 0 $(arg ns)/base_link $(arg ns)/laser 100" />
