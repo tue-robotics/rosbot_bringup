@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
     <arg name="camera" default="false" /> 
-    <arg name="vrpn" default="false" />
+    <arg name="vrpn" default="true" />
     <arg name="name" default="bobo"/>
     <arg name="ns" default=''/> 
 
