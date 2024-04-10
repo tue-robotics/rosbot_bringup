@@ -2,7 +2,7 @@
 <launch>
     <arg name="camera" default="false" /> 
     <arg name="vrpn" default="false" />
-    <arg name="name" default="bobo">
+    <arg name="name" default="bobo"/>
     <arg name="ns" default=''/> 
 
     <!-- Load robot config file -->
