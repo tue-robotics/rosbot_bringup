@@ -7,11 +7,11 @@ void poseCallback(const geometry_msgs::PoseStamped::ConstPtr& msg)
     static tf::TransformBroadcaster br;
     tf::Transform transform;
     // y and z axis are swapped for Optitrack!
-    transform.setOrigin(tf::Vector3(msg->pose.position.x, msg->pose.position.z, msg->pose.position.y));
+    transform.setOrigin(tf::Vector3(msg->pose.position.x, msg->pose.position.y, msg->pose.position.z));
     tf::Quaternion q(msg->pose.orientation.x,
-                     msg->pose.orientation.z,
                      msg->pose.orientation.y,
-                     -msg->pose.orientation.w);
+                     msg->pose.orientation.z,
+                     msg->pose.orientation.w);
     transform.setRotation(q);
     br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "map", "ground_truth/base_link"));
 };
